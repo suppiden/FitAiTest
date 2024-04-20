@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-3d {
+  position: absolute;
+  top: 30vw;
+  color: #B5FB02; /* Text color */
+  font-size:5vw; /* Text size */
+  text-shadow:
+    0 1px 0 hsl(100, 13%, 91%),
+    0 2px 0 #0e0e0e,
+    0 3px 0 #101010,
+    0 4px 0 #0c0c0c,
+    0 5px 0 #121212,
+    0 6px 1px rgba(0,0,0,.1),
+    0 0 5px rgba(0,0,0,.1),
+    0 1px 3px rgba(0,0,0,.3),
+    0 3px 5px rgba(0,0,0,.2),
+    0 5px 10px rgba(0,0,0,.25),
+    0 10px 10px rgba(0,0,0,.2),
+    0 20px 20px rgba(0,0,0,.15);
+  text-align: center;
+  transform: rotate(-45deg);
+}
+
+.man {
+  position: absolute;
+  left: -10vw;
+  height: 60vw;
+  width: 50vw;
+  top: -3vw;
+  background-color: #0C130E;
+}
+
+.background {
+  position: absolute;
+  right: -20vw;
+}
