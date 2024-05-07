@@ -1,5 +1,6 @@
 import man from '../src/man1.png'
 import React, { useState, useEffect, useRef } from 'react';
+import './index.css'
 
 
 
@@ -71,7 +72,7 @@ function Catch() {
       <h1 className="text-4xl font-bold mb-4">Welcoming <span className="text-gray-500">Per Training</span></h1>
       <p className="mb-6">Your catchy marketing text could go here to explain a bit more.</p>
       <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-        SEPT SRAT
+        Start Now
       </button>
     </div>
   </div>

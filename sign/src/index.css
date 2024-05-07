@@ -66,24 +66,29 @@ position: relative;
 
 .image{
 
-  height: 150px;
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  bottom: -4vh;
-  left: 49vh;
+  height: 42vh;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    bottom: -6.3vh;
+    left: 38vh;
 
   
 }
 
 
-#chatSimulation{
+#chatSimulation {
   display: flex;
-  border: 1px solid black; 
-  padding: 10px; 
-  width: 300px; 
-  height: 200px; 
+  border: 1px solid black;
+  padding: 10px;
+  width: 92vh;
+  height: 56vh;
   overflow-y: scroll;
+  position: relative;
+  left: 14vh;
+  top: 19vh;
+  flex-direction: column;
+
 }
 
 .message {
@@ -110,20 +115,41 @@ position: relative;
   align-self: flex-start; /* Alinea los mensajes del bot a la izquierda */
 }
 
+
+
+
 .container {
   width: 300px;
   height: 200px;
   overflow-y: auto;
   border: 1px solid #ccc;
+}
+
+
+.input-area {
   display: flex;
-  flex-direction: column; /* Los mensajes se muestran de arriba a abajo */
-  padding: 10px; /* Añade padding aquí en lugar de en línea si es posible */
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-top: 1px solid #ccc;
 }
 
-
-.container {
-  width: 300px;
-  height: 200px;
-  overflow-y: auto;
+.chat-input {
+  flex-grow: 1;
   border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 16px;
+  margin-right: 10px;
 }
+
+.send-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+

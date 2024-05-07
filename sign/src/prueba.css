@@ -1,0 +1,85 @@
+.side-home{
+    height: 100vh;
+    width : 55vh;
+  
+  }
+  
+  @media (max-width: 600px) {
+  
+    .side-home{
+  
+      height: 100vh;
+    }
+  
+  }
+  
+  .image{
+  
+  position: relative;  
+    
+  }
+  
+  .image{
+  
+    height: 150px;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    bottom: -4vh;
+    left: 49vh;
+  
+    
+  }
+  
+  
+  #chatSimulation{
+    display: flex;
+    border: 1px solid black; 
+    padding: 10px; 
+    width: 300px; 
+    height: 200px; 
+    overflow-y: scroll;
+    background-color: #5c5c5f;
+  }
+  
+  .message {
+    display: flex;
+    padding: 5px;
+    margin: 4px 0;
+    border-radius: 5px;
+    max-width: 80%;
+  }
+  
+  .user {
+    background-color: #bdec7d;
+    color: white;
+    margin-left: auto;
+    border-top-right-radius: 0;
+    align-self: flex-end; /* Alinea los mensajes del usuario a la derecha */
+  }
+  
+  .bot {
+    background-color: #e5e5ea;
+    color: black;
+    margin-right: auto;
+    border-top-left-radius: 0;
+    align-self: flex-start; /* Alinea los mensajes del bot a la izquierda */
+  }
+  
+  .container {
+    width: 300px;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column; /* Los mensajes se muestran de arriba a abajo */
+    padding: 10px; /* Añade padding aquí en lugar de en línea si es posible */
+  }
+  
+  
+  .container {
+    width: 300px;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+  }

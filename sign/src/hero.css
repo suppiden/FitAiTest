@@ -1,0 +1,34 @@
+@keyframes rainbow {
+    0%,100% {
+      border-color: red;
+    }
+    15% {
+      border-color: orange;
+    }
+    30% {
+      border-color: yellow;
+    }
+    45% {
+      border-color: green;
+    }
+    60% {
+      border-color: blue;
+    }
+    75% {
+      border-color: indigo;
+    }
+    90% {
+      border-color: violet;
+    }
+  }
+  
+  .rainbow-border:hover {
+    animation: rainbow 1s infinite;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+
+ 
+
+ 
