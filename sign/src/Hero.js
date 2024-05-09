@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-//import './hero.css'
 
 // Hook para determinar si es un dispositivo móvil
 const useIsMobile = () => {
@@ -35,9 +34,10 @@ const Card = ({ children }) => {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      p={3}
+      p={5}
       textAlign="center"
-      bg="white"
+      bg="black"
+      color={'#6B7280'}
       boxShadow="md"
       transition="all 0.3s"
       className="rainbow-border"
@@ -52,6 +52,8 @@ const Card = ({ children }) => {
 
 function Hero() {
   const isMobile = useIsMobile(); // Usamos el hook para verificar si estamos en un dispositivo móvil
+  const priceFontSize = isMobile ? "6xl" : "7xl"; // Tamaño dinámico del precio
+  const priceColor = "white"; // Nuevo color para el precio
 
   const cards = [ // Aquí podrías tener tus datos de las tarjetas en un array o traerlos de una API
     {
@@ -60,17 +62,15 @@ function Hero() {
       description: 'Perfect for individuals just starting out.',
     },
     {
-      title: 'Basic Plan',
-      price: '$9.99',
-      description: 'Perfect for individuals just starting out.',
+      title: 'Premium Plan',
+      price: '$19.99',
+      description: 'Ideal para small teams and projects.',
     },
     {
-      title: 'Basic Plan',
-      price: '$9.99',
-      description: 'Perfect for individuals just starting out.',
+      title: 'Pro Plan',
+      price: '$29.99',
+      description: 'Best for growing businesses and professionals.',
     },
-    
-    // ... más tarjetas
   ];
 
   return (
@@ -92,15 +92,15 @@ function Hero() {
         >
           {cards.map((card, index) => (
             <SwiperSlide key={index}>
-            <Card>
-              <Heading size='md'>{card.title}</Heading>
-              <Text fontSize="4xl" fontWeight="bold" my={4}>
-                    {card.price}
-                  </Text>
-                  <Text>{card.description}</Text>
-                <Button mt={4}>Choose Plan</Button>
-                            </Card>
-          </SwiperSlide>
+              <Card>
+                <Heading size='md' color={'white'} mb={4}>{card.title}</Heading>
+                <Text fontSize={priceFontSize} fontWeight="bold" my={6} color={priceColor}>
+                  {card.price}
+                </Text>
+                <Text mb={6}>{card.description}</Text>
+                <Button mt={4} bg={'#22c55e'}>Choose Plan</Button>
+              </Card>
+            </SwiperSlide>
           ))}
         </Swiper>
       ) : (
@@ -114,12 +114,12 @@ function Hero() {
         >
           {cards.map((card, index) => (
             <Card key={index}>
-              <Heading size='md'>{card.title}</Heading>
-              <Text fontSize="4xl" fontWeight="bold" my={4}>
+              <Heading size='md' mb={4}>{card.title}</Heading>
+              <Text fontSize={priceFontSize} fontWeight="bold" my={6} color={priceColor}>
                 {card.price}
               </Text>
-              <Text>{card.description}</Text>
-              <Button mt={4}>Choose Plan</Button>
+              <Text mb={6}>{card.description}</Text>
+              <Button mt={4} bg={'#22c55e'}>Choose Plan</Button>
             </Card>
           ))}
         </SimpleGrid>
@@ -129,3 +129,4 @@ function Hero() {
 }
 
 export default Hero;
+

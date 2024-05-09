@@ -46,7 +46,7 @@ const testimonialsData = [
 
   const Testimonials = () => {
   return (
-    <SimpleGrid columns={[1, null, 3]} spacing={10} p={10} justifyContent="center" bg="gray.700">
+    <SimpleGrid columns={[1, null, 3]} spacing={10} p={10} justifyContent="center" bg="black">
       {testimonialsData.map((testimonial, index) => (
         <TestimonialCard key={index} {...testimonial} />
       ))}

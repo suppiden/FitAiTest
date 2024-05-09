@@ -9,16 +9,16 @@ import Catch from './Catch.js';
 
 function App() {
   return (
-<Catch/>
-   /* <>
 
+    <>
+<Catch/>
     <ChakraProvider>
       <Hero />
       <Testimonials/>
     </ChakraProvider>
      <Footer/>
 
-     </> */
+     </> 
 
   );
 }

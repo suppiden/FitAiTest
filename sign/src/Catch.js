@@ -1,9 +1,6 @@
-import man from '../src/man1.png'
+import man from '../src/man1.png';
 import React, { useState, useEffect, useRef } from 'react';
-import './index.css'
-
-
-
+import './index.css';
 
 const messages = [
   { text: "¡Hola! ¿Cómo puedo ayudarte?", sender: "bot" },
@@ -16,79 +13,120 @@ const messages = [
 
 function Catch() {
   const [chatMessages, setChatMessages] = useState([]);
+  const [isChatStarted, setIsChatStarted] = useState(false);
+  const [isWriting, setIsWriting] = useState(false);
   const chatRef = useRef(null);
 
+  const startChat = () => {
+    setIsChatStarted(true);
+  };
+
   const addMessageToChat = (message) => {
-    setChatMessages(prevMessages => [...prevMessages, message]);
-    // Desplazar hacia abajo después de actualizar el estado
+    setChatMessages((prevMessages) => [...prevMessages, message]);
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
   };
 
   useEffect(() => {
-    let i = 0;
-    const simulateChat = () => {
-      if (i >= messages.length) {
-        return;
-      }
-      
-      // Nuevo mensaje que se va a añadir.
-      const newMessage = messages[i];
-      
-      // Agrega el mensaje actual al chat.
-      setChatMessages((prevMessages) => [...prevMessages, newMessage]);
-      
-      // Calcula el tiempo de espera para el próximo mensaje.
-      const delay = newMessage.sender === 'bot' ? 2000 : 1000;
-      
-      // Programa el próximo mensaje.
-      const timeoutId = setTimeout(simulateChat, delay);
+    if (isChatStarted) {
+      let i = 0;
 
-      // Incrementa el índice para el próximo mensaje.
-      i++;
-      
-      // Asegúrate de desplazar el chat hacia abajo.
-      if (chatRef.current) {
-        chatRef.current.scrollTop = chatRef.current.scrollHeight;
-      }
+      const simulateChat = () => {
+        if (i >= messages.length) {
+          setIsWriting(false);
+          return;
+        }
 
-      // Retorna una función de limpieza para cancelar el timeout si el componente se desmonta.
-      return () => clearTimeout(timeoutId);
-    };
+        const newMessage = messages[i];
+        const isBot = newMessage.sender === "bot";
+        const delay = isBot ? 2000 : 1000;
 
-    // Inicia la simulación del chat.
-    const timeoutId = setTimeout(simulateChat, 0);
+        if (isBot) {
+          setIsWriting(true);
+          setTimeout(() => {
+            setIsWriting(false);
+            addMessageToChat(newMessage);
+            setTimeout(simulateChat, delay);
+            i++;
+          }, 1000); // Delay para el indicador de escritura
+        } else {
+          addMessageToChat(newMessage);
+          setTimeout(simulateChat, delay);
+          i++;
+        }
+      };
 
-    // Limpieza: cancela el timeout cuando el componente se desmonte.
-    return () => clearTimeout(timeoutId);
-  }, []);
-  // bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded
+      simulateChat();
+    }
+  }, [isChatStarted]);
+
   return (
-
     <div className="flex h-auto w-auto">
-    <div className="side-home flex justify-between items-center bg-black text-white p-8 w-2/4">
-    <div className="max-w-md">
-      <h1 className="text-4xl font-bold mb-4">Welcoming <span className="text-gray-500">Per Training</span></h1>
-      <p className="mb-6">Your catchy marketing text could go here to explain a bit more.</p>
-      <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-        Start Now
-      </button>
-    </div>
-  </div>
-
-  <div className="flex bg-green-500 h-full "></div>
-  <div className='image1'>
-    <img src={man} className='image'></img>
-  </div>
-  <div id="chatSimulation" ref={chatRef}>
-  {chatMessages.map((message, index) => (
-  <div key={index} className={`message ${message.sender === 'user' ? 'user' : 'bot'}`}>
-    {message.text}
-  </div>
-))}
+      <div className="side-home flex justify-between items-center bg-black text-white p-8 w-2/4">
+        <div className="max-w-md">
+          <h1 className="text-4xl font-bold mb-4">
+            Welcoming <span className="text-gray-500">Per Training</span>
+          </h1>
+          <p className="mb-6">
+            Your catchy marketing text could go here to explain a bit more.
+          </p>
+          <button
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+            onClick={startChat}
+          >
+            Start Now
+          </button>
+        </div>
       </div>
-  </div>
+      <div className="flex bg-green-500 h-full"></div>
+      <div className="image1">
+        <img src={man} className="image" alt="Man illustration" />
+      </div>
+      <div
+        id="chatSimulation"
+        ref={chatRef}
+        className={`relative ${isChatStarted ? '' : 'blurred'}`}
+      >
+        {!isChatStarted && (
+          <div className="overlay flex items-center justify-center"></div>
+        )}
+        {chatMessages.map((message, index) => (
+          <div
+            key={index}
+            className={`message ${message.sender === 'user' ? 'user' : 'bot'}`}
+          >
+            {message.text}
+          </div>
+        ))}
+        {isWriting && (
+          <div className="message bot writing">
+            <span className="dot"></span>
+            <span className="dot"></span>
+            <span className="dot"></span>
+          </div>
+        )}
+        <div className="fake-input-bar">
+          <input
+            type="text"
+            placeholder="Type your message..."
+            className="fake-input"
+            disabled
+          />
+          <button className="fake-send-button" disabled>
+            Send
+          </button>
+        </div>
+      </div>
+      {!isChatStarted && (
+        <button
+          className="overlay-button bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"
+          onClick={startChat}
+        >
+          Start Chat
+        </button>
+      )}
+    </div>
   );
 }
 
